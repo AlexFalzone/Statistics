@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codes</title>
+    <link rel="stylesheet" href="/Statistics/css/style.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .code-container {
+        display: flex;
+    justify-content: center;      }
+
+      .code {
+        padding: 20px;
+        margin: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <h1>Codes</h1>
+    </header>
+    <div class="code-container">
+      <div class="code">
+        <h2>C# Code</h2>
+        <pre>
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+class CanvasApp : Form
+{
+    public CanvasApp()
+    {
+        // Set the size of the form
+        this.Size = new Size(400, 400);
+
+        // Create a Paint event handler to draw on the form
+        this.Paint += new PaintEventHandler(OnPaint);
+    }
+
+    private void OnPaint(object sender, PaintEventArgs e)
+    {
+        Graphics g = e.Graphics;
+
+        // Draw a background rectangle
+        Brush backgroundBrush = new SolidBrush(Color.FromArgb(238, 238, 238));
+        g.FillRectangle(backgroundBrush, 50, 50, 300, 200);
+
+        // Draw a line
+        Pen linePen = new Pen(Color.Black);
+        g.DrawLine(linePen, 100, 100, 250, 100);
+
+        // Draw a point
+        g.FillRectangle(Brushes.Black, 120, 120, 2, 2);
+
+        // Draw a circle
+        Pen circlePen = new Pen(Color.Black);
+        g.DrawEllipse(circlePen, 275, 135, 50, 50);
+
+        // Draw a rectangle
+        g.FillRectangle(Brushes.Black, 150, 140, 80, 40);
+    }
+
+    public static void Main()
+    {
+        Application.Run(new CanvasApp());
+    }
+}
+    </pre
+        >
+      </div>
+      <div class="code">
+        <h2>Javascript Code</h2>
+        <pre>
+
+&lt;script&gt;
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Draw a background rectangle
+    ctx.fillStyle = "#eee";
+    ctx.fillRect(50, 50, 300, 200);
+
+    // Draw a line
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(250, 100);
+    ctx.stroke();
+
+    // Draw a point
+    ctx.fillStyle = "black";
+    ctx.fillRect(120, 120, 2, 2);
+
+    // Draw a circle
+    ctx.beginPath();
+    ctx.arc(300, 160, 25, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    // Draw a rectangle
+    ctx.fillStyle = "black";
+    ctx.fillRect(150, 140, 80, 40);
+&lt;/script&gt; 
+            </pre
+        >
+      </div>
+    </div>
+  </body>
+</html>
