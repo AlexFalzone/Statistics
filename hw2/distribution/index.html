@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .code-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .code {
+        text-align: left;
+        padding: 20px;
+        margin: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Codes for distribution</h1>
+    </header>
+    <div class="code-container">
+      <div class="code">
+        <h2>JS Code</h2>
+        <pre>
+            &lt;script&gt;
+            function generateRandomNumbers(N, k) {
+              const randomNumbers = [];
+              for (let i = 0; i < N; i++) {
+                randomNumbers.push(Math.random());
+              }
+              return randomNumbers;
+            }
+            
+            function calculateClassIntervals(randomNumbers, k) {
+              const intervalCounts = new Array(k).fill(0);
+              const intervalWidth = 1 / k;
+              
+              for (let i = 0; i < randomNumbers.length; i++) {
+                const value = randomNumbers[i];
+                for (let j = 0; j < k; j++) {
+                  const lowerBound = j * intervalWidth;
+                  const upperBound = (j + 1) * intervalWidth;
+                  if (value >= lowerBound && value < upperBound) {
+                    intervalCounts[j]++;
+                    break;
+                  }
+                }
+              }
+              return intervalCounts;
+            }
+            
+            function main(N, k) {
+              const randomNumbers = generateRandomNumbers(N, k);
+              const intervalCounts = calculateClassIntervals(randomNumbers, k);
+              
+              console.log(`Random Numbers (N = ${N}, k = ${k}):`);
+              console.log(randomNumbers);
+            
+              console.log(`Distribution into Class Intervals:`);
+              for (let i = 0; i < k; i++) {
+                const lowerBound = i / k;
+                const upperBound = (i + 1) / k;
+                console.log(`[${lowerBound.toFixed(2)}, ${upperBound.toFixed(2)}): ${intervalCounts[i]}`);
+              }
+            }
+            
+            const N = 1000; // Modifica il valore di N
+            const k = 10;   // Modifica il valore di k
+            main(N, k);
+            
+            &lt;/script&gt;
+          </pre
+        >
+    </div>
+    <div class="code-container">
+      <div class="code">
+        <h2>C# Code</h2>
+        <pre>
+          using System;
+
+          class Program
+          {
+              static double[] GenerateRandomNumbers(int N)
+              {
+                  Random random = new Random();
+                  double[] randomNumbers = new double[N];
+                  
+                  for (int i = 0; i < N; i++)
+                  {
+                      randomNumbers[i] = random.NextDouble();
+                  }
+          
+                  return randomNumbers;
+              }
+          
+              static int[] CalculateClassIntervals(double[] randomNumbers, int k)
+              {
+                  int[] intervalCounts = new int[k];
+                  double intervalWidth = 1.0 / k;
+          
+                  for (int i = 0; i < randomNumbers.Length; i++)
+                  {
+                      double value = randomNumbers[i];
+                      for (int j = 0; j < k; j++)
+                      {
+                          double lowerBound = j * intervalWidth;
+                          double upperBound = (j + 1) * intervalWidth;
+                          if (value >= lowerBound && value < upperBound)
+                          {
+                              intervalCounts[j]++;
+                              break;
+                          }
+                      }
+                  }
+          
+                  return intervalCounts;
+              }
+          
+              static void Main()
+              {
+                  int N = 1000; // Modifica il valore di N
+                  int k = 10;   // Modifica il valore di k
+          
+                  double[] randomNumbers = GenerateRandomNumbers(N);
+                  int[] intervalCounts = CalculateClassIntervals(randomNumbers, k);
+          
+                  Console.WriteLine($"Random Numbers (N = {N}, k = {k}):");
+                  foreach (var number in randomNumbers)
+                  {
+                      Console.WriteLine(number);
+                  }
+          
+                  Console.WriteLine("Distribution into Class Intervals:");
+                  for (int i = 0; i < k; i++)
+                  {
+                      double lowerBound = i / (double)k;
+                      double upperBound = (i + 1) / (double)k;
+                      Console.WriteLine($"[{lowerBound:F2}, {upperBound:F2}): {intervalCounts[i]}");
+                  }
+              }
+          }
+          
+        </pre>
+      </div>
+    </div>
+  </body>
+</html>
+

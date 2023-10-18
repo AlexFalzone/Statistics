@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../css/style.css" />
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          height: 100vh;
+          margin: 0;
+        }
+  
+        .code-container {
+          display: flex;
+          justify-content: center;
+        }
+  
+        .code {
+          text-align: left;
+          padding: 20px;
+          margin: 10px;
+          background-color: #fff;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      </style>
+  </head>
+  <body>
+    <header>
+      <h1>Codes for Frequency</h1>
+    </header>
+    <div class="code-container">
+      <div class="code">
+        <h2>JS Code</h2>
+        <pre>
+            &lt;script&gt;
+                    fetch("../Professional Life - Sheet1.tsv")
+                        .then(response => response.text())
+                        .then(data => {
+                            const lines = data.split('\n');
+                            const result = [];
+                            const headers = lines[0].split('\t');
+            
+                            let joinLines = 0;
+            
+                            const columnData = {};
+                            const jointDistribution = {};
+            
+                            headers.forEach(header => {
+                                columnData[header] = {};
+                            });
+            
+                            for (let i = 1; i < lines.length; i++) {
+                                const currentLine = lines[i].split('\t');
+                                const age = currentLine[headers.indexOf("Age")];
+                                const sports = currentLine[headers.indexOf("Sports")];
+                                const background = currentLine[headers.indexOf("Background (degree)")];
+            
+                                for (let j = 0; j < headers.length; j++) {
+                                    const header = headers[j];
+                                    const cellValue = currentLine[j];
+            
+                                    if (cellValue !== '-') {
+                                        if (columnData[header][cellValue]) {
+                                            columnData[header][cellValue] += 1;
+                                        } else {
+                                            columnData[header][cellValue] = 1;
+                                        }
+                                    }
+                                }
+            
+                                if (age && sports && background && age !== '-' && sports !== '-' && background !== '-') {
+                                    const key = `${age}-${sports}-${background}`;
+                                    if (jointDistribution[key]) {
+                                        jointDistribution[key] += 1;
+                                    } else {
+                                        jointDistribution[key] = 1;
+                                    }
+                                    joinLines += 1;
+                                }
+                            }
+            
+                            var tableAge = document.getElementById("tableAge");
+                            var tableSports = document.getElementById("tableSports");
+                            var tableBackground = document.getElementById("tableBackground");
+            
+                            for (var key in columnData["Age"]) {
+                                if (columnData["Age"].hasOwnProperty(key)) {
+                                    var row = tableAge.insertRow(tableAge.rows.length);
+                                    var keyCell = row.insertCell(0);
+                                    var absoluteFrequencyCell = row.insertCell(1);
+                                    var relativeFrequencyCell = row.insertCell(2);
+                                    var percentageFrequencyCell = row.insertCell(3);
+            
+                                    keyCell.innerHTML = key;
+                                    absoluteFrequencyCell.innerHTML = columnData["Age"][key];
+                                    relativeFrequencyCell.innerHTML = (columnData["Age"][key] / lines.length).toFixed(5);
+                                    percentageFrequencyCell.innerHTML = ((columnData["Age"][key] / lines.length) * 100).toFixed(5);
+                                }
+                            }
+            
+                            for (var key in columnData["Sports"]) {
+                                if (columnData["Sports"].hasOwnProperty(key)) {
+                                    var row = tableSports.insertRow(tableSports.rows.length);
+                                    var keyCell = row.insertCell(0);
+                                    var absoluteFrequencyCell = row.insertCell(1);
+                                    var relativeFrequencyCell = row.insertCell(2);
+                                    var percentageFrequencyCell = row.insertCell(3);
+            
+                                    keyCell.innerHTML = key;
+                                    absoluteFrequencyCell.innerHTML = columnData["Sports"][key];
+                                    relativeFrequencyCell.innerHTML = (columnData["Sports"][key] / lines.length).toFixed(5);
+                                    percentageFrequencyCell.innerHTML = ((columnData["Sports"][key] / lines.length) * 100).toFixed(5);
+                                }
+                            }
+            
+                            for (var key in columnData["Background (degree)"]) {
+                                if (columnData["Background (degree)"].hasOwnProperty(key)) {
+                                    var row = tableBackground.insertRow(tableBackground.rows.length);
+                                    var keyCell = row.insertCell(0);
+                                    var absoluteFrequencyCell = row.insertCell(1);
+                                    var relativeFrequencyCell = row.insertCell(2);
+                                    var percentageFrequencyCell = row.insertCell(3);
+            
+                                    keyCell.innerHTML = key;
+                                    absoluteFrequencyCell.innerHTML = columnData["Background (degree)"][key];
+                                    relativeFrequencyCell.innerHTML = (columnData["Background (degree)"][key] / lines.length).toFixed(5);
+                                    percentageFrequencyCell.innerHTML = ((columnData["Background (degree)"][key] / lines.length) * 100).toFixed(5);
+                                }
+                            }
+            
+                            console.log(columnData);
+                            console.log(jointDistribution);
+                        });
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+    <div class="code-container">
+      <div class="code">
+        <h2>C# Code</h2>
+        <pre>
+            using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace DataAnalysis
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string filePath = "../Professional Life - Sheet1.tsv";
+            string[] lines = File.ReadAllLines(filePath);
+
+            Dictionary<string, Dictionary<string, int>> columnData = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, int> jointDistribution = new Dictionary<string, int>();
+            List<string> headers = lines[0].Split('\t').ToList();
+
+            foreach (string header in headers)
+            {
+                columnData[header] = new Dictionary<string, int>();
+            }
+
+            int joinLines = 0;
+
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] currentLine = lines[i].Split('\t');
+                string age = currentLine[headers.IndexOf("Age")];
+                string sports = currentLine[headers.IndexOf("Sports")];
+                string background = currentLine[headers.IndexOf("Background (degree)")];
+
+                for (int j = 0; j < headers.Count; j++)
+                {
+                    string header = headers[j];
+                    string cellValue = currentLine[j];
+
+                    if (cellValue != "-")
+                    {
+                        if (columnData[header].ContainsKey(cellValue))
+                        {
+                            columnData[header][cellValue] += 1;
+                        }
+                        else
+                        {
+                            columnData[header][cellValue] = 1;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(age) && !string.IsNullOrEmpty(sports) && !string.IsNullOrEmpty(background) &&
+                    age != "-" && sports != "-" && background != "-")
+                {
+                    string key = $"{age}-{sports}-{background}";
+                    if (jointDistribution.ContainsKey(key))
+                    {
+                        jointDistribution[key] += 1;
+                    }
+                    else
+                    {
+                        jointDistribution[key] = 1;
+                    }
+                    joinLines += 1;
+                }
+            }
+
+            // Output the results as needed
+            Console.WriteLine("Column Data:");
+            foreach (var kvp in columnData)
+            {
+                Console.WriteLine(kvp.Key);
+                foreach (var innerKvp in kvp.Value)
+                {
+                    Console.WriteLine($"Key: {innerKvp.Key}, Value: {innerKvp.Value}");
+                }
+            }
+
+            Console.WriteLine("Joint Distribution:");
+            foreach (var kvp in jointDistribution)
+            {
+                Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+            }
+        }
+    }
+}
+
+        </pre>
+    </div>
+  </body>
+</html>
