@@ -1,153 +1,143 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Homework 2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body>
     <header>
-        <h1>Frequency</h1>
+      <h1>Frequency</h1>
     </header>
 
-    <br>
-    <br>
+    <br />
+    <br />
     <nav>
-        <ul>
-            <li><a href="codes/">Codes</a></li>
-        </ul>
+      <ul>
+        <li><a href="codes/">Codes</a></li>
+      </ul>
     </nav>
 
     <div class="container">
-        <h2>Quantitative Discrete -- Age</h2>
-        <table class="center-table" id="tableAge">
-            <tr>
-                <th scope="col">Age (years)</th>
-                <th scope="col">Absolute Frequency</th>
-                <th scope="col">Relative Frequency</th>
-                <th scope="col">Percentage Frequency</th>
-            </tr>
-        </table>
-        <br>
-        <h2>Quantitative Continuous -- Sports</h2>
-        <table class="center-table" id="tableSports">
-            <tr>
-                <th scope="col">Sports</th>
-                <th scope="col">Absolute Frequency</th>
-                <th scope="col">Relative Frequency</th>
-                <th scope="col">Percentage Frequency</th>
-            </tr>
-        </table>
-        <br>
-        <h2>Qualitative -- Background (degree)</h2>
-        <table class="center-table" id="tableBackground">
-            <tr>
-                <th scope="col">Background (degree)</th>
-                <th scope="col">Absolute Frequency</th>
-                <th scope="col">Relative Frequency</th>
-                <th scope="col">Percentage Frequency</th>
-            </tr>
-        </table>
+      <h2>Quantitative Discrete -- Age</h2>
+      <table class="center-table" id="tableAge">
+        <tr>
+          <th scope="col">Age (years)</th>
+          <th scope="col">Absolute Frequency</th>
+          <th scope="col">Relative Frequency</th>
+          <th scope="col">Percentage Frequency</th>
+        </tr>
+      </table>
+      <br />
+      <h2>Quantitative Continuous -- Sports</h2>
+      <table class="center-table" id="tableSports">
+        <tr>
+          <th scope="col">Sports</th>
+          <th scope="col">Absolute Frequency</th>
+          <th scope="col">Relative Frequency</th>
+          <th scope="col">Percentage Frequency</th>
+        </tr>
+      </table>
+      <br />
+      <h2>Qualitative -- Background (degree)</h2>
+      <table class="center-table" id="tableBackground">
+        <tr>
+          <th scope="col">Background (degree)</th>
+          <th scope="col">Absolute Frequency</th>
+          <th scope="col">Relative Frequency</th>
+          <th scope="col">Percentage Frequency</th>
+        </tr>
+      </table>
     </div>
     <script>
-        fetch("../Professional Life - Sheet1.tsv")
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split('\n');
-                const result = [];
-                const headers = lines[0].split('\t');
+      fetch("../Professional Life - Sheet1.tsv")
+        .then((response) => response.text())
+        .then((data) => {
+          const lines = data.split("\n");
+          const result = [];
+          const headers = lines[0].split("\t");
 
-                let joinLines = 0;
+          let joinLines = 0;
 
-                const columnData = {};
-                const jointDistribution = {};
+          const columnData = {};
+          const jointDistribution = {};
 
-                headers.forEach(header => {
-                    columnData[header] = {};
-                });
+          headers.forEach((header) => {
+            columnData[header] = {};
+          });
 
-                for (let i = 1; i < lines.length; i++) {
-                    const currentLine = lines[i].split('\t');
-                    const age = currentLine[headers.indexOf("Age")];
-                    const sports = currentLine[headers.indexOf("Sports")];
-                    const background = currentLine[headers.indexOf("Background (degree)")];
+          for (let i = 1; i < lines.length; i++) {
+            const currentLine = lines[i].split("\t");
+            const age = currentLine[headers.indexOf("Age")];
+            const sports = currentLine[headers.indexOf("Sports")];
+            const background =
+              currentLine[headers.indexOf("Background (degree)")];
 
-                    for (let j = 0; j < headers.length; j++) {
-                        const header = headers[j];
-                        const cellValue = currentLine[j];
+            for (let j = 0; j < headers.length; j++) {
+              const header = headers[j];
+              const cellValue = currentLine[j];
 
-                        if (cellValue !== '-') {
-                            if (columnData[header][cellValue]) {
-                                columnData[header][cellValue] += 1;
-                            } else {
-                                columnData[header][cellValue] = 1;
-                            }
-                        }
-                    }
-
-                    if (age && sports && background && age !== '-' && sports !== '-' && background !== '-') {
-                        const key = `${age}-${sports}-${background}`;
-                        if (jointDistribution[key]) {
-                            jointDistribution[key] += 1;
-                        } else {
-                            jointDistribution[key] = 1;
-                        }
-                        joinLines += 1;
-                    }
+              if (cellValue !== "-") {
+                if (columnData[header][cellValue]) {
+                  columnData[header][cellValue] += 1;
+                } else {
+                  columnData[header][cellValue] = 1;
                 }
+              }
+            }
 
-                var tableAge = document.getElementById("tableAge");
-                var tableSports = document.getElementById("tableSports");
-                var tableBackground = document.getElementById("tableBackground");
+            if (
+              age &&
+              sports &&
+              background &&
+              age !== "-" &&
+              sports !== "-" &&
+              background !== "-"
+            ) {
+              const key = `${age}-${sports}-${background}`;
+              if (jointDistribution[key]) {
+                jointDistribution[key] += 1;
+              } else {
+                jointDistribution[key] = 1;
+              }
+              joinLines += 1;
+            }
+          }
 
-                for (var key in columnData["Age"]) {
-                    if (columnData["Age"].hasOwnProperty(key)) {
-                        var row = tableAge.insertRow(tableAge.rows.length);
-                        var keyCell = row.insertCell(0);
-                        var absoluteFrequencyCell = row.insertCell(1);
-                        var relativeFrequencyCell = row.insertCell(2);
-                        var percentageFrequencyCell = row.insertCell(3);
+          var tableAge = document.getElementById("tableAge");
+          var tableSports = document.getElementById("tableSports");
+          var tableBackground = document.getElementById("tableBackground");
 
-                        keyCell.innerHTML = key;
-                        absoluteFrequencyCell.innerHTML = columnData["Age"][key];
-                        relativeFrequencyCell.innerHTML = (columnData["Age"][key] / lines.length).toFixed(5);
-                        percentageFrequencyCell.innerHTML = ((columnData["Age"][key] / lines.length) * 100).toFixed(5);
-                    }
-                }
+          function fillTable(category, tableId) {
+            var table = document.getElementById(tableId);
+            for (var key in columnData[category]) {
+              if (columnData[category].hasOwnProperty(key)) {
+                var row = table.insertRow(table.rows.length);
+                var keyCell = row.insertCell(0);
+                var absoluteFrequencyCell = row.insertCell(1);
+                var relativeFrequencyCell = row.insertCell(2);
+                var percentageFrequencyCell = row.insertCell(3);
 
-                for (var key in columnData["Sports"]) {
-                    if (columnData["Sports"].hasOwnProperty(key)) {
-                        var row = tableSports.insertRow(tableSports.rows.length);
-                        var keyCell = row.insertCell(0);
-                        var absoluteFrequencyCell = row.insertCell(1);
-                        var relativeFrequencyCell = row.insertCell(2);
-                        var percentageFrequencyCell = row.insertCell(3);
+                keyCell.innerHTML = key;
+                absoluteFrequencyCell.innerHTML = columnData[category][key];
+                relativeFrequencyCell.innerHTML = (
+                  columnData[category][key] / lines.length
+                ).toFixed(5);
+                percentageFrequencyCell.innerHTML = (
+                  (columnData[category][key] / lines.length) *
+                  100
+                ).toFixed(5);
+              }
+            }
+          }
 
-                        keyCell.innerHTML = key;
-                        absoluteFrequencyCell.innerHTML = columnData["Sports"][key];
-                        relativeFrequencyCell.innerHTML = (columnData["Sports"][key] / lines.length).toFixed(5);
-                        percentageFrequencyCell.innerHTML = ((columnData["Sports"][key] / lines.length) * 100).toFixed(5);
-                    }
-                }
+          fillTable("Age", "tableAge");
+          fillTable("Sports", "tableSports");
+          fillTable("Background (degree)", "tableBackground");
 
-                for (var key in columnData["Background (degree)"]) {
-                    if (columnData["Background (degree)"].hasOwnProperty(key)) {
-                        var row = tableBackground.insertRow(tableBackground.rows.length);
-                        var keyCell = row.insertCell(0);
-                        var absoluteFrequencyCell = row.insertCell(1);
-                        var relativeFrequencyCell = row.insertCell(2);
-                        var percentageFrequencyCell = row.insertCell(3);
-
-                        keyCell.innerHTML = key;
-                        absoluteFrequencyCell.innerHTML = columnData["Background (degree)"][key];
-                        relativeFrequencyCell.innerHTML = (columnData["Background (degree)"][key] / lines.length).toFixed(5);
-                        percentageFrequencyCell.innerHTML = ((columnData["Background (degree)"][key] / lines.length) * 100).toFixed(5);
-                    }
-                }
-
-                console.log(columnData);
-                console.log(jointDistribution);
-            });
+          console.log(columnData);
+          console.log(jointDistribution);
+        });
     </script>
-</body>
+  </body>
 </html>
