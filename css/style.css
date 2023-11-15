@@ -130,3 +130,56 @@ table tr:nth-child(even) {
 table tr:hover {
   background-color: #d5e2e8;
 }
+
+body {
+  background-color: #cecece;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #343a40;
+  color: #f2f2f2;
+  padding: 20px;
+}
+
+main {
+  padding: 20px;
+}
+
+.form-group {
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  padding-left: 33vw;
+}
+
+.form-field label {
+  margin-right: 10px;
+}
+
+.form-field input {
+  max-width: 25vw;
+  margin-right: 3vw;
+}
+
+.btn-success {
+  color: black;
+  align-items: center;
+}
+
+#myCanvas {
+  background-color: rgb(236 236 236 / 94%);
+  align-self: center;
+  background-color: rgb(236 236 236 / 94%); 
+  align-self: center;
+}

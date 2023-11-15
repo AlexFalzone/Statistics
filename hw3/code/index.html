@@ -3,95 +3,386 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 3</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <title>Codes</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .code-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .code {
+        padding: 20px;
+        margin: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
   <body>
     <header>
-      <h1>Homework 3</h1>
+        <h1>Codes</h1>
     </header>
-    <main>
-      <div>
-        <nav>
-            <ul>
-              <li><a href="code/">Codes</a></li>
-            </ul>
-            <ul>
-              <li><a href="theory/">Theory</a></li>
-            </ul>
-          </nav>
-        <form id="attackForm">
-          <div class="form-group">
-            <div class="form-field">
-              <label for="numberOfAttacks">Number of Attacks:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="numberOfAttacks"
-                placeholder="Insert the number of attacks:"
-                required
-              />
-            </div>
-            <br />
-            <div class="form-field">
-              <label for="numberOfSystems">Numer of Systems:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="numberOfSystems"
-                placeholder="Insert the number of systems:"
-                required
-              />
-            </div>
-            <br />
-            <div class="form-field">
-              <label for="probability">Probability:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="probability"
-                placeholder="Insert the probability:"
-                required
-              />
-            </div>
-            <br />
-            <div class="form-field">
-              <label for="attackHistogram">Attack Histogram:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="attackHistogram"
-                placeholder="Insert attack's number for the histogram:"
-                required
-              />
-            </div>
-            <br />
-            <div class="form-field">
-              <button
-                type="button"
-                class="btn btn-success"
-                onclick="collectData()"
-              >
-                Send
-              </button>
-            </div>
-            <br />
-            <canvas
-              id="attackCanvas"
-              style="
-                background-color: rgb(236 236 236 / 94%);
-                align-self: center;
-              "
-            ></canvas>
-            <br />
-          </div>
-          <br />
-        </form>
+    <div class="code-container">
+      <div class="code">
+        <h2>C# Code</h2>
+        <pre>
+            using System;
+            using System.Collections.Generic;
+            using System.Drawing;
+            using System.Windows.Forms;
+            
+            public class Rect
+            {
+                public int x, y, width, height, idRect;
+                public int gridSpacing = 8;
+                public int gridXini, gridXfin, gridYini, gridYfin;
+                public int gridScale = 1;
+                public float offsetViewX = 0.0f;
+                public float offsetViewY = 0.0f;
+                public int id;
+            
+                public Rect(int x, int y, int width, int height, int idRect)
+                {
+                    this.x = x;
+                    this.y = y;
+                    this.width = width;
+                    this.height = height;
+                    this.gridXini = x;
+                    this.gridXfin = x + width;
+                    this.gridYini = y;
+                    this.gridYfin = y + height;
+                    this.idRect = idRect;
+                }
+            
+                public void Draw(Graphics g)
+                {
+                    g.DrawRectangle(Pens.Black, x, y, width, height);
+                    DrawGrid(g);
+                    DrawAxes(g);
+                    DrawChart(g);
+                    HistogramData();
+                    DrawHistogram(g);
+                }
+            
+                public void DrawGrid(Graphics g)
+                {
+                    int gridSize = gridSpacing;
+                    int numRows = 2 * N;
+                    int numCols = N;
+                    float dimRows = (gridYfin - gridYini) / numRows;
+                    float dimCols = (gridXfin - gridXini) / numCols;
+            
+                    g.Save();
+                    g.SetClip(new Rectangle(x, y, width, height));
+            
+                    for (float y = gridYini + offsetViewY; y <= gridYfin + offsetViewY; y += dimRows)
+                    {
+                        float xGrigliaSx = gridXini + offsetViewX;
+                        float xGrigliaDx = gridXfin + offsetViewX;
+            
+                        g.DrawLine(Pens.White, xGrigliaSx, y, xGrigliaDx, y);
+                    }
+            
+                    for (float x = gridXini + offsetViewX; x <= gridXfin + offsetViewX; x += dimCols)
+                    {
+                        float yGrigliaSopra = gridYini + offsetViewY;
+                        float yGrigliaSotto = gridYfin + offsetViewY;
+            
+                        g.DrawLine(Pens.White, x, yGrigliaSopra, x, yGrigliaSotto);
+                    }
+            
+                    g.Restore();
+                }
+            
+                public void DrawAxes(Graphics g)
+                {
+                    g.DrawRectangle(Pens.Black, x, y, width, height);
+                    g.SetClip(new Rectangle(x, y, width, height));
+            
+                    float startX = gridXini + offsetViewX;
+                    float endX = gridXfin + offsetViewX;
+                    float centerY = (gridYini + gridYfin) / 2 + offsetViewY;
+            
+                    g.DrawLine(Pens.Black, startX, centerY, endX, centerY);
+            
+                    g.Restore();
+            
+                    g.SetClip(new Rectangle(x, y, width, height));
+            
+                    float startY = gridYini + offsetViewY;
+                    float endY = gridYfin + offsetViewY;
+                    float originX = gridXini + offsetViewX;
+            
+                    g.DrawLine(Pens.Black, originX, startY, originX, endY);
+            
+                    g.Restore();
+                }
+            
+                public void Zoom(float scale)
+                {
+                    int fattoreScala = 32;
+                    gridXini -= (int)(fattoreScala * scale);
+                    gridXfin += (int)(fattoreScala * scale);
+                    gridYini -= (int)(fattoreScala * scale);
+                    gridYfin += (int)(fattoreScala * scale);
+                }
+            
+                public void MoveRect(int dx, int dy)
+                {
+                    x += dx;
+                    y += dy;
+                    gridXini += dx;
+                    gridXfin += dx;
+                    gridYini += dy;
+                    gridYfin += dy;
+                }
+            }
+            
+            public class MainForm : Form
+            {
+                private PictureBox canvas;
+                private Graphics g;
+                private List<Rect> objects = new List<Rect>();
+                private bool isDragging = false;
+                private bool isDraggingView = false;
+                private bool isResizingBottomRight = false;
+                private Rect selectedRect = null;
+                private int lastMouseX, lastMouseY;
+            
+                private int N = 0;
+                private int M = 0;
+                private int P = 0;
+                private int A = 0;
+                private List<int[]> dataCollector = new List<int[]>();
+                private List<string> colori = new List<string>();
+            
+                private int intervalsNumber = 20;
+                private Dictionary<string, int> count = new Dictionary<string, int>();
+                private Dictionary<string, int> count3 = new Dictionary<string, int>();
+                private Dictionary<string, int> count4 = new Dictionary<string, int>();
+                private List<int> dataForHistogram = new List<int>();
+                private List<string> labelsForHistogram = new List<string>();
+            
+                private List<int> dataForHistogram3 = new List<int>();
+                private List<string> labelsForHistogram3 = new List<string>();
+            
+                private List<int> dataForHistogram4 = new List<int>();
+                private List<string> labelsForHistogram4 = new List<string>();
+            
+                private int barHeight = 10;
+            
+                public MainForm()
+                {
+                    InitializeComponents();
+                    InitializeObjects();
+                }
+            
+                private void InitializeComponents()
+                {
+                    canvas = new PictureBox();
+                    canvas.Dock = DockStyle.Fill;
+                    canvas.BackColor = Color.White;
+                    canvas.Paint += Canvas_Paint;
+                    canvas.MouseDown += Canvas_MouseDown;
+                    canvas.MouseMove += Canvas_MouseMove;
+                    canvas.MouseUp += Canvas_MouseUp;
+                    canvas.MouseWheel += Canvas_MouseWheel;
+                    canvas.ContextMenuStrip = new ContextMenuStrip();
+            
+                    Controls.Add(canvas);
+                }
+            
+                private void InitializeObjects()
+                {
+                    Rect rect1 = new Rect(80, 30, 550, 300, 1);
+                    Rect rect2 = new Rect(80, 370, 550, 300, 2);
+                    Rect rect3 = new Rect(800, 30, 550, 300, 3);
+                    Rect rect4 = new Rect(800, 370, 550, 300, 4);
+            
+                    objects.Add(rect1);
+                    objects.Add(rect2);
+                    objects.Add(rect3);
+                    objects.Add(rect4);
+            
+                    dataCollector.Add(new int[M]);
+                }
+            
+                private void Canvas_Paint(object sender, PaintEventArgs e)
+                {
+                    g = e.Graphics;
+                    DrawRectangles();
+                }
+            
+                private void DrawRectangles()
+                {
+                    foreach (Rect rect in objects)
+                    {
+                        rect.Draw(g);
+                    }
+                }
+            
+                private void Canvas_MouseDown(object sender, MouseEventArgs e)
+                {
+                    int mouseX = e.X;
+                    int mouseY = e.Y;
+            
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        for (int i = objects.Count - 1; i >= 0; i--)
+                        {
+                            Rect rect = objects[i];
+                            if (mouseX < rect.x + rect.width + 10 &&
+                                mouseX > rect.x + rect.width - 10 &&
+                                mouseY < rect.y + rect.height + 10 &&
+                                mouseY > rect.y + rect.height - 10)
+                            {
+                                isResizingBottomRight = true;
+                                selectedRect = rect;
+                                lastMouseX = mouseX;
+                                lastMouseY = mouseY;
+                                break;
+                            }
+                            if (mouseX >= rect.x &&
+                                mouseX <= rect.x + rect.width &&
+                                mouseY >= rect.y &&
+                                mouseY <= rect.y + rect.height)
+                            {
+                                selectedRect = rect;
+                                isDragging = true;
+                                lastMouseX = mouseX;
+                                lastMouseY = mouseY;
+                                break;
+                            }
+                        }
+                    }
+                    else if (e.Button == MouseButtons.Right)
+                    {
+                        selectedRect = FindSelectedObject(mouseX, mouseY);
+                        if (selectedRect != null)
+                        {
+                            isDraggingView = true;
+                            lastMouseX = mouseX;
+                            lastMouseY = mouseY;
+                        }
+                    }
+                }
+            
+                private Rect FindSelectedObject(int x, int y)
+                {
+                    for (int i = objects.Count - 1; i >= 0; i--)
+                    {
+                        Rect rect = objects[i];
+                        if (x >= rect.x &&
+                            x <= rect.x + rect.width &&
+                            y >= rect.y &&
+                            y <= rect.y + rect.height)
+                        {
+                            return rect;
+                        }
+                    }
+                    return null;
+                }
+            
+                private void Canvas_MouseMove(object sender, MouseEventArgs e)
+                {
+                    int mouseX = e.X;
+                    int mouseY = e.Y;
+            
+                    if (isDragging)
+                    {
+                        if (selectedRect != null)
+                        {
+                            int dx = mouseX - lastMouseX;
+                            int dy = mouseY - lastMouseY;
+                            selectedRect.MoveRect(dx, dy);
+                        }
+            
+                        g.Clear(Color.White);
+                        DrawRectangles();
+            
+                        lastMouseX = mouseX;
+                        lastMouseY = mouseY;
+                    }
+                    else if (isDraggingView)
+                    {
+                        if (selectedRect != null)
+                        {
+                            g.Clear(Color.White);
+                            DrawRectangles();
+                            selectedRect.offsetViewX += mouseX - lastMouseX;
+                            selectedRect.offsetViewY += mouseY - lastMouseY;
+                            lastMouseX = mouseX;
+                            lastMouseY = mouseY;
+                        }
+                        else
+                        {
+                            g.Clear(Color.White);
+                            DrawRectangles();
+                            int dx = mouseX - lastMouseX;
+                            int dy = mouseY - lastMouseY;
+                            foreach (Rect rect in objects)
+                            {
+                                rect.offsetViewX += dx;
+                                rect.offsetViewY += dy;
+                            }
+                            lastMouseX = mouseX;
+                            lastMouseY = mouseY;
+                        }
+                    }
+                    else if (isResizingBottomRight)
+                    {
+                        g.Clear(Color.White);
+                        DrawRectangles();
+            
+                        selectedRect.gridXfin += mouseX - lastMouseX;
+                        selectedRect.gridYfin += mouseY - lastMouseY;
+            
+                        selectedRect.width += mouseX - lastMouseX;
+                        selectedRect.height += mouseY - lastMouseY;
+            
+                        lastMouseX = mouseX;
+                        lastMouseY = mouseY;
+                    }
+                }
+            
+                private void Canvas_MouseUp(object sender, MouseEventArgs e)
+                {
+                    isDragging = false;
+                    isDraggingView = false;
+                    isResizingBottomRight = false;
+                }
+            
+                private void Canvas_MouseWheel(object sender, MouseEventArgs e)
+                {
+                    if (selectedRect != null)
+                    {
+                        int delta = e.Delta;
+                        float scale = delta > 0 ? -1 : 1;
+                        selectedRect.Zoom(scale);
+                        g.Clear(Color.White);
+                        DrawRectangles();
+                        e.Handled = true;
+                    }
+                }
+            }
+            
+    </pre>
       </div>
-    </main>
-  </body>
+      <div class="code">
+        <h2>Javascript Code</h2>
+        <pre>
 
-  <script>
+&lt;script&gt;
+
     function setCanvasDimensionsToScreen() {
       const canvas = document.getElementById("attackCanvas");
       const screenWidth = window.innerWidth * 0.9;
@@ -106,9 +397,9 @@
     });
 
     window.addEventListener("resize", setCanvasDimensionsToScreen);
-  </script>
 
-  <script>
+
+
     class Rect {
       constructor(x, y, width, height, idRect) {
         this.x = x;
@@ -782,5 +1073,9 @@
     canvas.addEventListener("contextmenu", (e) => {
       e.preventDefault();
     });
-  </script>
-</html>
+&lt;/script&gt; 
+            </pre
+        >
+      </div>
+    </div>
+  </body>
