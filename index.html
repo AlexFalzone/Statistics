@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework Homepage</title>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -17,28 +12,35 @@
     </header>
     <main>
       <p class="welcome">
-        Welcome to the Statistics Homework page. 
-        <br> 
-        This page is dedicated to
-        homework assignments related to statistics, and it is managed by Alex
-        Falzone (2117532).
+        Welcome to the Statistics Homework page.
+        <br />
+        This page is dedicated to homework assignments related to statistics,
+        and it is managed by Alex Falzone (2117532).
       </p>
       <p class="welcome">
         Click on the links below to access specific homework assignments.
       </p>
       <nav>
-        <ul>
-          <li><a href="hw1/">Homework 1</a></li>
-        </ul>
-        <ul>
-          <li><a href="hw2/">Homework 2</a></li>
-        </ul>
-        <ul>
-          <li><a href="hw3/">Homework 3</a></li>
-        </ul>
-        <ul>
-          <li><a href="hw5/">Homework 5</a></li>
-        </ul>
+        <div class="dropdown">
+          <span>Homework</span>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="hw1/">Homework 1</a></li>
+              <li><a href="hw2/">Homework 2</a></li>
+              <li><a href="hw3/">Homework 3</a></li>
+              <li><a href="hw5/">Homework 5</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span>Thesis</span>
+          <div class="dropdown-content">
+            <!-- <ul>
+              <li><a href="thesis1/">Thesis 1</a></li>
+              <li><a href="thesis2/">Thesis 2</a></li>
+            </ul> -->
+          </div>
+        </div>
       </nav>
     </main>
   </body>
