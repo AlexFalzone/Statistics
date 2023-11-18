@@ -160,11 +160,14 @@ main {
 .form-field {
   display: flex;
   align-items: center;
-  padding-left: 33vw;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .form-field label {
   margin-right: 10px;
+  width: 100px;
+  display: inline-block;
 }
 
 .form-field input {
@@ -182,4 +185,9 @@ main {
   align-self: center;
   background-color: rgb(236 236 236 / 94%); 
   align-self: center;
+}
+
+.center-table {
+  text-align: center;
+  margin: 0 auto;
 }
