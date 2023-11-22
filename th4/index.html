@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thesis 4</title>
-  <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-  <header>
-    <h1>Exploring the Glivenko–Cantelli Theorem</h1>
-  </header>
-  <main>
-    <section class="qa">
-      <h3>Exploring the Glivenko–Cantelli Theorem: Meaning, Proof, Simulations</h3>
-      <p>
-        The Glivenko–Cantelli Theorem is a profound result in probability theory, providing insights into the convergence of empirical distribution functions to true distribution functions. This thesis aims to delve into the multifaceted aspects of the Glivenko–Cantelli Theorem, elucidating its meaning, presenting a rigorous proof, and employing simulations to illustrate its real-world implications.
-      </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thesis 4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Exploring the Glivenko-Cantelli Theorem</h1>
+    </header>
+    <main>
+      <section class="qa">
+        <h3>Introduction</h3>
+        <p>
+          The <strong>Glivenko-Cantelli Theorems</strong> is a fundamental result in probability
+          theory that establishes the convergence properties of the empirical
+          cumulative distribution function (ECDF) to the true cumulative
+          distribution function (CDF). As the sample size increases, the ECDF
+          converges uniformly to the CDF, providing insights into the behavior
+          of sample-based estimators.
+        </p>
 
-      <h4>Meaning:</h4>
-      <p>
-        The Glivenko–Cantelli Theorem explores the convergence behavior of empirical distribution functions to their true counterparts as sample size increases. It holds significance in understanding the statistical properties of sample distribution functions, providing a foundation for statistical inference. This thesis delves into the meaning of the Glivenko–Cantelli Theorem and its relevance in probability theory.
-      </p>
+        <h4>The Glivenko-Cantelli Theorem::</h4>
+        <p>
+          The theorem states that, for any true cumulative distribution function
+          F and corresponding empirical counterpart Fn based on n independent
+          and identically distributed samples, the maximum difference between Fn
+          and F converges to zero almost surely as n approaches infinity.
+        </p>
 
-      <h4>Proof:</h4>
-      <p>
-        To establish a solid understanding, this thesis provides a rigorous proof of the Glivenko–Cantelli Theorem. The proof involves mathematical derivations and logical steps that showcase the convergence properties of empirical distribution functions. Readers will gain insights into the theoretical foundation of the theorem, enhancing their grasp of its significance in statistical theory.
-      </p>
+        <h4>Proof and Concept:</h4>
+        <p>
+          he proof involves showing that, as the sample size grows, the suprema
+          of the absolute differences between the empirical and true cumulative
+          distribution functions tend to zero with high probability. This result
+          has profound implications, highlighting the consistency of
+          sample-based estimators in approximating the true underlying
+          distribution.
+        </p>
 
-      <h4>Simulations:</h4>
-      <p>
-        Complementing the theoretical proof, simulations are employed to visually illustrate the real-world implications of the Glivenko–Cantelli Theorem. Through computational models, readers can observe how empirical distribution functions converge to true distribution functions under different scenarios. Simulations serve as a valuable pedagogical tool, enhancing comprehension and bridging theoretical concepts with practical applications.
-      </p>
+        <h4>Glivenko-Cantelli Theorem Simulation Plot:</h4>
 
-      <h4>Conclusion:</h4>
-      <p>
-        In conclusion, this thesis navigates the intricacies of the Glivenko–Cantelli Theorem, elucidating its meaning, providing a rigorous proof, and utilizing simulations to highlight its real-world implications. The Glivenko–Cantelli Theorem stands as a fundamental result in probability theory, contributing to our understanding of sample distribution functions and paving the way for robust statistical inference in diverse fields.
-      </p>
-    </section>
-  </main>
-</body>
+        <img
+          src="img.png"
+          alt="Glivenko-Cantelli_Theorem_Simulation"
+          style="max-width: 100%"
+        />
+
+        <p>
+          This script provides a hands-on illustration of the Glivenko–Cantelli
+          Theorem, emphasizing its significance in understanding the convergence
+          properties of empirical estimates to true distribution functions.
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
