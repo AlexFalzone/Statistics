@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thesis 10</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>The Viener process and the GBM, Derivations and simulations</h1>
+    </header>
+    <main>
+      <section class="qa">
+        <h3>The Wiener Process (Brownian Motion):</h3>
+        <p>
+          The Wiener process, or Brownian motion, is a continuous-time
+          stochastic process that exhibits random motion. It has stationary,
+          independent increments, and is widely used in various fields,
+          including physics and finance. The script simulates the Wiener process
+          using random increments sampled from a normal distribution.
+        </p>
+
+        <h4>Derivation of Geometric Brownian Motion (GBM):</h4>
+        <p>
+          The Geometric Brownian Motion (GBM) is a continuous-time stochastic
+          process that extends the Wiener process. It serves as a fundamental
+          model for describing the evolving value of financial assets. The
+          equation for GBM is given by:
+        </p>
+
+        <blockquote> d𝑆<sub>𝑡</sub> = 𝜇𝑆<sub>𝑡</sub>dt + 𝜎 𝑆<sub>𝑡</sub>d𝑊<sub>𝑡</sub></blockquote>
+
+        <p>Where:</p>
+        <ul>
+          <li>𝑆<sub>𝑡</sub> is the value of the process at time 𝑡,</li>
+          <li>𝜇 is the drift or expected rate of return,</li>
+          <li>𝜎 is the volatility or standard deviation of the returns,</li>
+          <li>𝑊<sub>𝑡</sub> is a Wiener process.</li>
+        </ul>
+
+        <p>
+          This equation represents the differential form of GBM, capturing the
+          instantaneous rate of change in the asset's value. The derivation
+          involves utilizing the properties of the Wiener process and
+          integrating to obtain the final expression.
+        </p>
+
+        <h4>Simulation of Wiener Process and GBM:</h4>
+        <p>
+          The Python script simulates both the Wiener process and the GBM. The
+          Wiener process represents the random motion, while the GBM extends
+          this concept to model the evolving value of a financial asset. The
+          resulting plot illustrates the simulated paths of both processes over
+          time.
+        </p>
+
+        <h4>Practical Significance:</h4>
+        <p>
+          The Wiener process and GBM are fundamental in financial modeling,
+          where GBM is often used to describe the price movement of financial
+          instruments such as stocks. Understanding and simulating these
+          processes contribute to the development of models for pricing options,
+          risk management, and portfolio optimization.
+        </p>
+
+        <h4>Wiener Process and GBM Simulation Plot:</h4>
+
+        <img
+          src="wiener_gbm_simulation_plot.png"
+          alt="wiener_gbm_simulation_plot"
+          style="max-width: 100%"
+        />
+
+        <h4>Conclusion:</h4>
+        <p>
+          Simulating the Wiener process and GBM provides a practical insight
+          into the behavior of stochastic processes in continuous time. These
+          processes serve as foundational concepts in financial mathematics and
+          are crucial for understanding the dynamics of random phenomena in
+          diverse fields.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
