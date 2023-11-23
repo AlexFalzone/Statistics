@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thesis 9</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>The Poisson Process: Meaning, Properties,Simulations</h1>
+    </header>
+    <main>
+      <section class="qa">
+        <h3>Introduction</h3>
+        <p>
+          The Poisson Process is a stochastic process used to model the
+          occurrence of rare events in continuous time. It is characterized by
+          events that happen independently, and the time between consecutive
+          events follows an exponential distribution. The process is named after
+          the French mathematician Siméon Denis Poisson, who introduced it in
+          the early 19th century.
+        </p>
+
+        <h4>Properties:</h4>
+        <p>
+          <ul>
+            <li>
+              <strong>Independence:</strong> Events in a Poisson Process are independent, meaning the occurrence of one event does not influence the timing of the next.
+            </li>
+            <li>
+              <strong>Stationarity:</strong> The process is stationary, implying that the probability of a certain number of events occurring in a fixed time interval remains constant.
+            </li>
+            <li>
+              <strong>Memoryless Property:</strong> The time until the next event is memoryless, meaning it does not depend on the past. This is a consequence of the exponential distribution.
+            </li>
+          </ul>
+        </p>
+
+        <h4>Simulation of the Poisson Process:</h4>
+        <p>
+          The accompanying Python script demonstrates the simulation of a
+          Poisson Process with a specified arrival rate. The inter-arrival times
+          between events are generated from an exponential distribution, and
+          cumulative sums yield the arrival times. The resulting plot showcases
+          the random and independent occurrence of events over time.
+        </p>
+
+        <h4>Practical Significance:</h4>
+        <p>
+          Poisson Processes find applications in various fields, including
+          telecommunications, queuing theory, and biology. They are particularly
+          useful for modeling rare events, such as the arrival of customers at a
+          service point, occurrences of earthquakes, or particle decay in
+          physics.
+        </p>
+
+        <h4>Poisson Process Plot:</h4>
+        <img
+          src="poisson_process_plot.png"
+          alt="poisson_process_plot"
+          style="max-width: 100%"
+        />
+
+        <h4>Conclusion:</h4>
+        <p>
+          Understanding the Poisson Process provides a powerful tool for
+          modeling and analyzing the timing of rare events in continuous time.
+          Its mathematical simplicity and wide applicability make it a valuable
+          concept in both theoretical and practical contexts.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
