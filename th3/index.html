@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thesis 3</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
   </head>
   <body>
     <header>
@@ -12,51 +18,425 @@
     </header>
     <main>
       <section class="qa">
-        <h3>Introduction:</h3>
+        <h3>Introduction to Gaussian Distribution:</h3>
         <p>
-          Understanding the Gaussian Distribution, commonly known as the normal
-          distribution or bell curve, is essential in the realm of statistics
-          and probability theory. This distribution, characterized by its
-          symmetric bell-shaped curve, serves as a mathematical model for a wide
-          array of natural phenomena, making it a foundational concept in
-          statistical analysis.
+          The Gaussian Distribution, also known as the normal distribution or
+          bell curve, stands as one of the most foundational and ubiquitous
+          concepts in the realm of probability theory and statistics. Named
+          after the 18th-century mathematician Carl Friedrich Gauss, this
+          distribution elegantly characterizes the natural variability observed
+          in a multitude of phenomena across diverse fields.
+        </p>
+        <p>
+          At its core, the Gaussian Distribution is characterized by its
+          distinctive bell-shaped curve, symmetrically centered around the mean.
+          This symmetrical form signifies that the majority of observations
+          cluster closely to the mean, with a predictable spread determined by
+          the standard deviation. The elegance of the Gaussian Distribution lies
+          not only in its mathematical simplicity but, more importantly, in its
+          pervasive presence in various natural and artificial processes.
+        </p>
+        <p>
+          The Gaussian Distribution finds its way into countless aspects of our
+          lives, from the physical sciences to social sciences and beyond. Its
+          prevalence is often attributed to the Central Limit Theorem, which
+          asserts that the sum (or average) of a large number of independent and
+          identically distributed random variables, regardless of their original
+          distribution, tends to follow a Gaussian distribution. This theorem,
+          in essence, underscores the Gaussian Distribution as a fundamental
+          representation of randomness and variability in diverse datasets.
+        </p>
+        <p>
+          As we embark on an exploration of the Gaussian Distribution, we will
+          delve into its meaning, key properties, and the intricacies of its
+          derivations. Subsequently, through Python simulations, we will witness
+          the manifestation of its statistical significance in the form of
+          random samples and distributions. Through this journey, we aim to
+          unravel the elegance and practical significance that the Gaussian
+          Distribution imparts to the fabric of statistical understanding and
+          scientific inquiry.
         </p>
 
-        <h4>Characteristics of the Gaussian Distribution:</h4>
+        <h3>Meaning and Properties:</h3>
         <p>
-          The Gaussian Distribution is defined by its central tendencies and
-          variability. Most data points cluster around the mean, with a
-          predictable spread determined by the standard deviation. This
-          symmetric shape indicates that extreme values are less likely, making
-          it a versatile tool for modeling real-world data.
+          The Gaussian Distribution, often denoted as \( \mathcal{N}(\mu,
+          \sigma^2) \), where \( \mu \) is the mean and \( \sigma^2 \) is the
+          variance, holds several key properties that underpin its significance
+          in statistical modeling.
         </p>
 
-        <h4>Practical Significance:</h4>
+        <ol>
+          <li>
+            <strong>Symmetry and Bell-Shaped Curve:</strong><br />
+            The hallmark of the Gaussian Distribution is its symmetrical
+            bell-shaped curve. This symmetry implies that observations cluster
+            around the mean, with equal probabilities of deviations in both
+            positive and negative directions. The familiar bell curve visually
+            represents the likelihood of different values occurring in a
+            dataset.
+          </li>
+          <li>
+            <strong>Central Tendency:</strong><br />
+            The mean (\( \mu \)) is the central measure of tendency,
+            representing the peak of the distribution. It is the point around
+            which the data is symmetrically distributed. In the Gaussian
+            Distribution, the mean is also the median and mode, underscoring its
+            centrality in the dataset.
+          </li>
+          <li>
+            <strong>Dispersion and Spread:</strong><br />
+            The standard deviation (\( \sigma \)) quantifies the spread or
+            dispersion of the distribution. Larger standard deviations result in
+            wider, flatter curves, indicating greater variability in the
+            dataset. The empirical rule states that approximately 68%, 95%, and
+            99.7% of the data fall within one, two, and three standard
+            deviations from the mean, respectively.
+          </li>
+          <li>
+            <strong>Probability Density Function (PDF):</strong><br />
+            The Gaussian Distribution is fully characterized by its probability
+            density function (PDF), given by the formula:<br />
+            \[ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left(\frac{x
+            - \mu}{\sigma}\right)^2} \]<br />
+            where \( e \) is Euler's number, \( \pi \) is the mathematical
+            constant, \( x \) is the variable, \( \mu \) is the mean, and \(
+            \sigma \) is the standard deviation.
+          </li>
+          <li>
+            <strong>Z-Scores and Standardization:</strong><br />
+            Z-scores, also known as standard scores, indicate how many standard
+            deviations a data point is from the mean. Standardization involves
+            transforming data into z-scores, simplifying comparisons across
+            different Gaussian distributions.
+          </li>
+        </ol>
+
         <p>
-          The Gaussian Distribution holds paramount importance in various
-          scientific and statistical applications. Its prevalence as an
-          underlying assumption in statistical methods allows researchers and
-          analysts to make reliable predictions and draw meaningful inferences
-          about populations. This distribution's ubiquity in nature further
-          underscores its significance in understanding and modeling random
-          phenomena.
+          Understanding these properties provides a solid foundation for
+          comprehending the behavior and characteristics of data modeled by the
+          Gaussian Distribution. In the subsequent sections, we will venture
+          into the derivations that define the mean and standard deviation and
+          proceed to bring these concepts to life through simulated
+          distributions.
         </p>
 
-        <h4>Gaussian Distribution Plot:</h4>
+        <h3>Derivations:</h3>
+        <ol>
+          <li><strong>Derivation of the Mean (\( \mu \)):</strong></li>
+          <p>
+            The mean (\( \mu \)) of a Gaussian Distribution is a crucial
+            parameter that represents the center of the distribution.
+            Mathematically, it is calculated as the expected value, denoted as
+            \( E[X] \), and is given by the integral: \[ \mu =
+            \int_{-\infty}^{\infty} x \cdot f(x) \,dx \] where \( f(x) \) is the
+            probability density function (PDF) of the Gaussian Distribution.
+            This integral represents a weighted average, emphasizing the central
+            role of the mean as the balancing point for the distribution.
+          </p>
+
+          <li><strong>Derivation of the Variance (\( \sigma^2 \)):</strong></li>
+          <p>
+            The variance (\( \sigma^2 \)) is a measure of the spread or
+            dispersion of the Gaussian Distribution. It quantifies how much
+            individual data points deviate from the mean. Mathematically, the
+            variance is calculated as the expected value of the squared
+            deviations from the mean: \[ \sigma^2 = \int_{-\infty}^{\infty} (x -
+            \mu)^2 \cdot f(x) \,dx \] This integral encapsulates the spread of
+            the distribution, emphasizing the significance of the variance in
+            characterizing the width of the Gaussian curve.
+          </p>
+
+          <li><strong>Standard Normal Distribution (\( Z \)):</strong></li>
+          <p>
+            The standard normal distribution (\( Z \)) is a special case of the
+            Gaussian Distribution with a mean (\( \mu \)) of 0 and a standard
+            deviation (\( \sigma \)) of 1. The conversion from a general
+            Gaussian distribution to the standard normal distribution involves
+            standardization: \[ Z = \frac{X - \mu}{\sigma} \] where \( X \) is a
+            random variable following a Gaussian distribution. Standardization
+            allows for the comparison of values across different Gaussian
+            distributions, simplifying statistical analyses.
+          </p>
+
+          <li>
+            <strong
+              >Covariance Matrix and Multivariate Gaussian Distribution:</strong
+            >
+          </li>
+          <p>
+            In extending the Gaussian Distribution to multiple dimensions, the
+            concept of a covariance matrix becomes essential. For a multivariate
+            Gaussian Distribution with variables \( X_1, X_2, ..., X_n \), the
+            covariance matrix \( \Sigma \) is defined as: \[ \Sigma =
+            \begin{bmatrix} \text{cov}(X_1, X_1) & \text{cov}(X_1, X_2) & \dots
+            & \text{cov}(X_1, X_n) \\ \text{cov}(X_2, X_1) & \text{cov}(X_2,
+            X_2) & \dots & \text{cov}(X_2, X_n) \\ \vdots & \vdots & \ddots &
+            \vdots \\ \text{cov}(X_n, X_1) & \text{cov}(X_n, X_2) & \dots &
+            \text{cov}(X_n, X_n) \end{bmatrix} \] This matrix captures the
+            relationships and variances between different variables.
+          </p>
+
+          <li><strong>Moment Generating Function (MGF):</strong></li>
+
+          <p>
+            The moment generating function (MGF), denoted as \( M_X(t) \), is a
+            powerful tool in probability theory for deriving moments of a random
+            variable. For a Gaussian Distribution with mean \( \mu \) and
+            variance \( \sigma^2 \), the MGF is given by: \[ M_X(t) =
+            \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right) \] This function
+            provides a systematic way to compute moments and central moments of
+            the Gaussian Distribution.
+          </p>
+
+          <li>
+            <strong>Conditional Expectation and Conditional Variance:</strong>
+          </li>
+          <p>
+            Conditional expectation and conditional variance in the context of
+            the Gaussian Distribution involve predicting the mean and variance
+            of a subset of the data given knowledge of another subset. For a
+            Gaussian Distribution, the conditional expectation is given by: \[
+            \text{E}(X | Y) = \mu_X + \text{cov}(X,Y) \cdot \text{var}^{-1}(Y)
+            \cdot (Y - \mu_Y) \] where \( \mu_X \) and \( \mu_Y \) are the means
+            of \( X \) and \( Y \), respectively.
+          </p>
+
+          <li><strong>Kullback-Leibler Divergence:</strong></li>
+
+          The Kullback-Leibler (KL) Divergence measures the difference between
+          two probability distributions. For two Gaussian Distributions \( P \)
+          and \( Q \) with means \( \mu_P, \mu_Q \) and covariances \( \Sigma_P,
+          \Sigma_Q \), the KL Divergence is given by: \[ D_{KL}(P \,||\, Q) =
+          \frac{1}{2} \left( \text{tr}(\Sigma_Q^{-1}\Sigma_P) + (\mu_Q -
+          \mu_P)^\top \Sigma_Q^{-1} (\mu_Q - \mu_P) - k +
+          \ln\left(\frac{\det(\Sigma_Q)}{\det(\Sigma_P)}\right) \right) \] where
+          \( k \) is the dimensionality of the distribution.
+
+          <li><strong>Practical Applications:</strong></li>
+          <p>
+            The Gaussian Distribution finds widespread use in various practical
+            applications. In finance, it models asset prices; in physics, it
+            describes thermal noise. Its prevalence in diverse fields
+            underscores its utility as a foundational probability distribution.
+          </p>
+        </ol>
+
+        <h3>Simulation using Python:</h3>
+        <div
+          style="
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+          "
+        >
+          <p>
+            Python provides a powerful environment for simulating random samples
+            from a Gaussian Distribution and visualizing the results. Below is a
+            minimal Python script that demonstrates how to generate random
+            samples and create a histogram for visualization:
+          </p>
+
+          <pre
+            style="
+              background-color: #f1f1f1;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              padding: 10px;
+              overflow-x: auto;
+            "
+          >
+      <code class="language-python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters for the Gaussian Distribution
+mean = 0
+std_dev = 1
+num_samples = 1000
+
+# Generate random samples
+samples = np.random.normal(mean, std_dev, num_samples)
+
+# Create a histogram
+plt.hist(samples, bins=50, density=True, alpha=0.7, color='b')
+
+# Plot the probability density function
+xmin, xmax = plt.xlim()
+x = np.linspace(xmin, xmax, 100)
+p = np.exp(-(x - mean)**2 / (2 * std_dev**2)) / (std_dev * np.sqrt(2 * np.pi))
+plt.plot(x, p, 'k', linewidth=2)
+
+plt.title('Gaussian Distribution Simulation')
+plt.xlabel('Value')
+plt.ylabel('Probability Density')
+plt.show()
+      </code>
+    </pre>
+
+          <p>
+            In this script, NumPy is used for generating random samples from a
+            Gaussian Distribution, and Matplotlib is employed to create a
+            histogram and plot the probability density function (PDF) for
+            comparison. Adjust the mean, standard deviation, and the number of
+            samples to observe the impact on the resulting distribution.
+          </p>
+        </div>
+
         <img
           src="gaussian_distribution_plot.png"
           alt="Gaussian Distribution Plot"
           style="max-width: 100%"
         />
 
-        <h4>Conclusion:</h4>
         <p>
-          In conclusion, a solid grasp of the Gaussian Distribution is
-          indispensable for anyone involved in statistical analysis. The
-          distribution's characteristics, visual representation, and practical
-          applications collectively contribute to its enduring relevance in
-          scientific research and data-driven decision-making.
+          The Python script generates random samples and visualizes them through
+          a histogram, allowing us to observe the characteristics of the
+          simulated distribution.
         </p>
+
+        <p>
+          By adjusting the parameters such as mean, standard deviation, and the
+          number of samples, it is possible to experiment with different
+          scenarios.
+        </p>
+
+        <p>
+          The generated histogram provides a visual representation of the
+          simulated data, while the overlaid probability density function (PDF)
+          curve serves as a reference to the theoretical distribution. This
+          comparison aids in understanding how well the simulated data aligns
+          with the expected Gaussian distribution.
+        </p>
+
+        <h3>Variations of Parameters:</h3>
+        <p>
+          Let's explore the impact of varying the parameters in the Python
+          script. Feel free to modify the values for mean, standard deviation,
+          and the number of samples and observe how these changes influence the
+          shape of the simulated distribution.
+        </p>
+
+        <ol>
+          <li><strong>Practical Applications:</strong></li>
+          <p>
+            The Gaussian Distribution, with its bell-shaped curve and
+            well-defined properties, finds extensive application in various
+            fields. Some practical applications include:
+          </p>
+
+          <li><strong>Signal Processing:</strong></li>
+          <p>
+            Gaussian distributions are commonly used to model asset prices and
+            returns in financial markets. Techniques like the Black-Scholes
+            model for option pricing rely on assumptions of normally distributed
+            returns.
+          </p>
+
+          <li><strong>Financial Modeling:</strong></li>
+          <p>
+            In signal processing, Gaussian noise models random variations in
+            signals. Understanding the statistical properties of noise is
+            crucial for designing effective signal processing algorithms.
+          </p>
+
+          <li><strong>Physics and Engineering:</strong></li>
+          <p>
+            Gaussian distributions describe natural phenomena such as thermal
+            noise. In engineering, they are used to model measurement errors and
+            uncertainties.
+          </p>
+
+          <li><strong>Machine Learning:</strong></li>
+          <p>
+            Gaussian distributions are foundational in machine learning,
+            especially in Gaussian Naive Bayes classification and Gaussian
+            Mixture Models (GMMs).
+          </p>
+
+          <p>
+            These applications highlight the versatility and importance of the
+            Gaussian Distribution in quantifying uncertainty and randomness in
+            real-world phenomena.
+          </p>
+        </ol>
+
+        <h3>Conclusion:</h3>
+        <p>
+          In conclusion, the Gaussian Distribution stands as a cornerstone in
+          probability theory, offering a mathematical framework to describe and
+          understand random phenomena. Its symmetrical bell-shaped curve and
+          well-defined properties make it a versatile tool with widespread
+          applications across diverse fields.
+        </p>
+
+        <p>
+          From the derivation of its mean and variance to its extension into
+          multivariate scenarios, the Gaussian Distribution provides a robust
+          foundation for statistical analysis. The moment generating function,
+          conditional expectations, and the Kullback-Leibler Divergence further
+          deepen our understanding of its mathematical intricacies.
+        </p>
+
+        <p>
+          The practical applications of the Gaussian Distribution span financial
+          modeling, signal processing, physics, engineering, and machine
+          learning. Its ubiquity in these fields underscores its role in
+          quantifying uncertainty and modeling real-world randomness.
+        </p>
+
+        <p>
+          As we engage in simulations using Python, the distribution comes to
+          life, allowing us to visualize its characteristics and understand its
+          behavior in different scenarios. The ability to generate random
+          samples and analyze their distribution empowers us to apply these
+          theoretical concepts in practical and dynamic contexts.
+        </p>
+
+        <p>
+          In essence, the Gaussian Distribution is not just a mathematical
+          abstraction but a powerful tool that permeates various aspects of our
+          analytical toolkit, contributing to our ability to model, understand,
+          and make informed decisions in the face of uncertainty.
+        </p>
+
+        <p>
+          Whether in finance, science, or technology, the Gaussian
+          Distribution's enduring relevance highlights its status as a
+          fundamental and indispensable concept in the realm of probability and
+          statistics.
+        </p>
+
+        <h3>Reference:</h3>
+        <ul>
+          <li>
+            <a
+              href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-9469.00045"
+              >Normal Inverse Gaussian Distributions and Stochastic Volatility
+              Modelling</a
+            >
+          </li>
+
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Normal_distribution"
+              >Normal distribution</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://www.tandfonline.com/doi/abs/10.1080/00401706.1977.10489586"
+              >The Inverse Gaussian Distribution as a Lifetime Model</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/gaussian-distribution-revisited/9BF859A2C5EF6679D3B23AC63ED28F16"
+              >The Gaussian distribution revisited</a
+            >
+          </li>
+        </ul>
       </section>
     </main>
   </body>
