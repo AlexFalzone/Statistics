@@ -243,3 +243,50 @@ main {
   text-align: center;
   margin: 0 auto;
 }
+
+select {
+  width: 15%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #000000;
+  font-size: 15px;
+}
+
+input {
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #000000;
+}
+
+#canvas1,
+#canvas2 {
+  width: 55%;
+  margin: 10px;
+  height: auto;
+  position: absolute;
+  display: none;
+  background-color: white;
+}
+
+#main-container {
+  margin: 20px;
+}
+
+.input-form label,
+.input-form input,
+.input-form button {
+  display: block;
+  margin-bottom: 13px;
+}
+
+.canvasWrapper {
+  width: 100%;
+  resize: both;
+  overflow: auto;
+  border: 1px solid #343a40;
+}
